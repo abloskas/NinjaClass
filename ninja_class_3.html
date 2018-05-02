@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Ninja{
+            constructor(name){
+                this.name = name
+                this.health = 100;
+                this.speed = 3;
+                this.strength = 3;
+    }
+
+    sayName(){
+        console.log(`this ninja's name is: ${this.name}`);
+        return this;
+    }
+    showStats(){
+        console.log(`Name: ${this.name}, Health: ${this.health}, Strength: ${this.strength}, Speed: ${this.speed}`);
+        return this;
+    }
+        drinkSake(){
+        this.health += 10;
+        return this; 
+        }
+
+     punch(anotherNinja){
+        if(anotherNinja instanceof Ninja){
+            anotherNinja.health -= 5;
+        }   
+        return this;
+     }
+
+        kick(anotherNinja){
+        if(anotherNinja instanceof Ninja){
+            anotherNinja.health -= 15;
+            console.log(`${anotherNinja.name} was kicked by ${this.name} and lost 15 Health!`)
+        }
+        return this;
+    }
+}
+    class Sensei extends Ninja{
+    constructor(name){
+        super(name);
+        this.health = 200;
+        this.speed = 10;
+        this.strength = 10;
+        this.wisdom = 10;
+
+    }
+    speakWisdom(){
+        console.log("What one programmer can do in one month, two programmers can do in two months.")
+        super.drinkSake();
+    }
+}
+
+
+const ninja1 = new Ninja("ashley");
+const ninja2 = new Ninja("sam");
+ninja1.showStats();
+ninja2.showStats();
+
+ninja1.punch(ninja2).punch(ninja2);
+ninja1.kick(ninja2);
+ninja1.showStats();
+ninja2.showStats();
+
+const sensei1 = new Sensei("Master Splinter");
+sensei1.speakWisdom();
+sensei1.showStats();
+
+    </script>
+</body>
+</html>
